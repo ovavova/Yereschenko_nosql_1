@@ -1,0 +1,13 @@
+[project]
+name = "yereschenko-nosql-1"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "kaggle==1.6.14",
+    "pandas==2.2.2",
+    "pymongo==4.7.3",
+    "python-dotenv==1.0.1",
+    "tqdm==4.66.4",
+]
