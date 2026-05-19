@@ -5,16 +5,12 @@ import pandas as pd
 from pymongo import MongoClient
 from tqdm import tqdm
 from dotenv import load_dotenv
-import kagglehub
-
-# Download latest version
-SPOTIFY_CSV_PATH = kagglehub.dataset_download("maharshipandya/-spotify-tracks-dataset")
 
 load_dotenv()
 
 MONGO_URI = os.environ["MONGO_URI"]
 DB_NAME = "spotify"
-CSV_PATH = SPOTIFY_CSV_PATH     # шлях до завантаженого файлу з Kaggle
+CSV_PATH = "dataset.csv"     # шлях до завантаженого файлу з Kaggle
 BATCH_SIZE = 1000
 
 client = MongoClient(MONGO_URI)
