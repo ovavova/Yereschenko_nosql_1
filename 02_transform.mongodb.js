@@ -1,20 +1,23 @@
 // scripts/02_transform.js
 // Запуск: mongosh "ВАШ_URI" --file scripts/02_transform.js
 
-!!! МІСЦЕ ДЛЯ ВАШОГО КОДУ !!!
+//!!! МІСЦЕ ДЛЯ ВАШОГО КОДУ !!!
 
 
-db = db.getSiblingDB("spotify");
+//db = db.getSiblingDB("spotify");
+
+use('spotify');
 
 // raw дані після завантаження
 const source_collection = "tracks_raw";
 
 //Перед трансформацією видаліть стару колекцію tracks, якщо вона існує.
 
-print("Видалення старої колекції 'tracks'...");
+console.log("Видалення старої колекції 'tracks'...");
 db.tracks.drop();
 
-print("Початок трансформації даних...");
+console.log("Початок трансформації даних...");
+
 
 // Трансформація диних 
 
@@ -30,16 +33,15 @@ const pipeline = [
       duration_ms: 1,
       track_genre: 1,
 
-      // 3. Перетворення артистів
-
+      // ВИПРАВЛЕНО - Перетворення артистів
       artists: {
         $map: {
-          input: { $split: ["$artists_raw", ";"] },
+          input: { $split: ["$artists", ";"] },
           as: "artist",
-          // зберігаємо масивом без пробілів:
           in: { $trim: { input: "$$artist" } }
         }
       },
+
 
       // 4. Формування аудіо-характеристик та обчислюваних полів
 
@@ -80,7 +82,8 @@ const pipeline = [
               then: "medium" 
             },
             { case: { $lt: ["$popularity", 40] }, then: "low" }
-          ]
+          ],
+          default: "no popularity defined"
         }
       }
     }
@@ -91,3 +94,15 @@ const pipeline = [
   }
 ];
 
+// виконання:
+db.getCollection(source_collection).aggregate(pipeline);
+
+
+// Перевірка
+const count = db.tracks.countDocuments();
+console.log(`\nТрансформацію завершено успішно.`);
+console.log(`Кількість документів у колекції 'tracks': ${count}`);
+
+const sampleDoc = db.tracks.findOne();
+console.log("\nПриклад одного документа зі створеної колекції:");
+sampleDoc; // In the playground, just referencing the object prints it beautifully
