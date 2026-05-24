@@ -1,6 +1,6 @@
 ## Частина 1
 
-
+![imag alt](https://github.com/ovavova/Yereschenko_nosql_1/blob/main/MongoDB01.png)
 
 1. Чому аудіо-характеристики винесені в окремий об’єкт audio_features, а не зберігаються плоско? Коли таке вкладення вигідне, а коли створює проблеми?
 
