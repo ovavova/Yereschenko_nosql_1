@@ -23,8 +23,14 @@
 ![image alt](https://github.com/ovavova/Yereschenko_nosql_1/blob/main/MongoDB2_1.png)
 
 ### Завдання 2. Виконавці, у яких усі треки популярні
-![image alt](https://github.com/ovavova/Yereschenko_nosql_1/blob/main/NoSQL_2_2.png)
+![image alt](https://github.com/ovavova/Yereschenko_nosql_1/blob/main/MongoDB2_2.png)
 
 ### Завдання 3. Нетипові треки
+![image alt](https://github.com/ovavova/Yereschenko_nosql_1/blob/main/NoSQL_2_2.png)
 
+
+### Завдання 4: Треки для фонової роботи
+
+Знайдіть треки, які підходять для фонового прослуховування під час роботи: тихі (loudness < -10), з низькою мовленнєвою складовою (speechiness < 0,1), переважно інструментальні (instrumentalness > 0,5) і не містять explicit-контенту.
+![image alt](https://github.com/ovavova/Yereschenko_nosql_1/blob/main/MongoDB2_4.png)
 
