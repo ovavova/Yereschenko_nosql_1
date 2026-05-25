@@ -18,6 +18,11 @@
 
 ## Частина 2 Queries 
 
-![image alt](https://github.com/ovavova/Yereschenko_nosql_1/blob/main/MongoDB2_2.png)
+### Завдання 1. Треки для вечірки
+
+### Завдання 2. Виконавці, у яких усі треки популярні
+![image alt](https://github.com/ovavova/Yereschenko_nosql_1/blob/main/NoSQL_2_2.png)
+
+### Завдання 3. Нетипові треки
 
 
