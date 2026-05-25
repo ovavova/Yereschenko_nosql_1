@@ -18,4 +18,6 @@
 
 ## Частина 2 Queries 
 
+![image alt](https://github.com/ovavova/Yereschenko_nosql_1/blob/main/MongoDB2_2.png)
+
 
