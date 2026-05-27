@@ -1,7 +1,7 @@
 ## Частина 1
 
 ### Результат виконання 02_DATA_TRANSFORM.mongodb.js по трансформації даних:
-![image alt](https://github.com/ovavova/Yereschenko_nosql_1/blob/main/MongoDB01.png)
+![image alt](https://github.com/ovavova/Yereschenko_nosql_1/blob/main/screenshots/MongoDB01.png)
 
 ### 1. Чому аудіо-характеристики винесені в окремий об’єкт audio_features, а не зберігаються плоско? Коли таке вкладення вигідне, а коли створює проблеми?
 
@@ -20,19 +20,19 @@
 
 ### Завдання 1. Треки для вечірки
 
-![image alt](https://github.com/ovavova/Yereschenko_nosql_1/blob/main/MongoDB2_1.png)
+![image alt](https://github.com/ovavova/Yereschenko_nosql_1/blob/main/screenshots/MongoDB2_1.png)
 
 ### Завдання 2. Виконавці, у яких усі треки популярні
-![image alt](https://github.com/ovavova/Yereschenko_nosql_1/blob/main/MongoDB2_2.png)
+![image alt](https://github.com/ovavova/Yereschenko_nosql_1/blob/main/screenshots/MongoDB2_2.png)
 
 ### Завдання 3. Нетипові треки
-![image alt](https://github.com/ovavova/Yereschenko_nosql_1/blob/main/NoSQL_2_2.png)
+![image alt](https://github.com/ovavova/Yereschenko_nosql_1/blob/main/screenshots/NoSQL_2_2.png)
 
 
 ### Завдання 4: Треки для фонової роботи
 
 Знайдіть треки, які підходять для фонового прослуховування під час роботи: тихі (loudness < -10), з низькою мовленнєвою складовою (speechiness < 0,1), переважно інструментальні (instrumentalness > 0,5) і не містять explicit-контенту.
-![image alt](https://github.com/ovavova/Yereschenko_nosql_1/blob/main/MongoDB2_4.png)
+![image alt](https://github.com/ovavova/Yereschenko_nosql_1/blob/main/screenshots/MongoDB2_4.png)
 
 ### 1. Для чого використовується інструкція $unwind?
 - $unwind використовується в Aggregation Pipeline для розгортання масивів.
