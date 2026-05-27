@@ -114,3 +114,24 @@ db.tracks.explain("executionStats").find({
   "audio_features.danceability": { $gte: 0.7 }
 }).sort({ popularity: -1 }).toArray();
 ```
+
+### 4.2 Індекс для інших полів
+
+Припустимо, що ви часто шукаєте музику для роботи, використовуючи поля audio_features.instrumentalness, audio_features.speechiness та explicit. Щоб такі запити виконувалися ефективно, створіть складений індекс за цими полями та за допомогою explain() покажіть, що він використовується при виконанні пошуку.
+
+
+### 4.3 Покривний запит
+
+Припустимо, що індекс із завдання 1 вже існує.
+
+Дано запит:
+
+db.tracks.find({
+  track_genre: "pop",
+  popularity: { $gte: 70 }
+});
+
+
+
+Питання: Чи є цей запит покривним (covered query)? Надайте розгорнуту та обґрунтовану відповідь у файлі README.
+
