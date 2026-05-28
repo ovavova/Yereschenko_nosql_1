@@ -1,6 +1,6 @@
 //explain спочатку
 
-// use('spotify');
+use('spotify');
 
 db.tracks.find({
   track_genre: "pop",
@@ -9,7 +9,7 @@ db.tracks.find({
 .sort({ popularity: -1 })
 .explain("executionStats"); // для VSCode playground 
 
-//робимо індекси ESR
+//робимо індекси 
 
 // db.tracks.createIndex({
 //   track_genre: 1,

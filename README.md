@@ -34,7 +34,7 @@
 Знайдіть треки, які підходять для фонового прослуховування під час роботи: тихі (loudness < -10), з низькою мовленнєвою складовою (speechiness < 0,1), переважно інструментальні (instrumentalness > 0,5) і не містять explicit-контенту.
 ![image alt](https://github.com/ovavova/Yereschenko_nosql_1/blob/main/screenshots/MongoDB2_4.png)
 
-### 4.1 Для чого використовується інструкція $unwind?
+### 2.5 Для чого використовується інструкція $unwind?
 - $unwind використовується в Aggregation Pipeline для розгортання масивів.
   приклад в популярних -
 ``` db.tracks.aggregate([
@@ -42,7 +42,9 @@
   { $unwind: "$artists" },
 ```
 
-### 4.2 Чим $stdDevPop відрізняється від $stdDevSamp?
+
+
+### 2.6 Чим $stdDevPop відрізняється від $stdDevSamp?
 - $stdDevPop обчислює відхилення по всій популяції, а $stdDevSamp - по частині популяції і використовує формулу з коригуванням Бесселя, де знаменник дорівнює $N - 1$. В прикладі ми обчислювали відхилення по всім даним тож брали $stdDevPop. Для великих об'ємів можливо можна прискорити взявши статистично значущу випадкову вибірку і обчисливши $stdDevSamp
 
 ## Частина 3 — Аналітика через Aggregation Pipeline
@@ -50,6 +52,7 @@
 ### 3.1 Топ-10 виконавців за середньою популярністю 
 Знайдіть виконавців, у яких є хоча б 5 треків. Для кожного виконавця порахуйте середню популярність його треків. Потім відсортуйте за спаданням та виберіть топ-10 виконавців. Вивід повинен включати ім’я виконавця та його середню популярність.
 
+![image alt](https://github.com/ovavova/Yereschenko_nosql_1/blob/main/screenshots/MongoDB_3_1_top.png)
 
 ### Завдання 2. Розподіл треків за настроєм
 Кожному треку присвойте настрій на основі двох полів: valence (позитивність) та energy:
@@ -59,6 +62,7 @@
 високий valence + низька energy → calm
 низький valence + низька energy → sad Порахуйте, скільки треків потрапило до кожної категорії, та виведіть таблицю з настроєм і кількістю треків.
 
+![image alt](https://github.com/ovavova/Yereschenko_nosql_1/blob/main/screenshots/MongoDB_3_2_sort_mood.png)
 
 ### Завдання 3. Найбільш «танцювальний» жанр
 
@@ -71,6 +75,10 @@
 середню енергію (avg_energy)
 середню позитивність (avg_valence)
 кількість треків у жанрі
+
+![image alt](https://github.com/ovavova/Yereschenko_nosql_1/blob/main/screenshots/MongoDB_3_3_aggregation_dancibility.png)
+
+
 
 ### Питання частина 3
 1. У запиті 1 ми фільтруємо виконавців, у яких менше 5 треків. Як зміниться результат, якщо знизити поріг до 1? А що станеться, якщо вибирати виконавців із більш ніж 50 треками? Поясніть результат.
@@ -92,7 +100,7 @@ db.tracks.explain("executionStats").find({
   "audio_features.danceability": { $gte: 0.7 }
 }).sort({ popularity: -1 }).toArray();
 ```
-// --------------add picture
+![image alt](https://github.com/ovavova/Yereschenko_nosql_1/blob/main/screenshots/MongoDB_4_1.png)
 
 
 ```js
@@ -105,7 +113,7 @@ db.tracks.createIndex({
   "audio_features.danceability": 1
 });
 ```
-// --------------add picture
+![image alt](https://github.com/ovavova/Yereschenko_nosql_1/blob/main/screenshots/MongoDB_4_1_2.png)
 
 
 ```js
@@ -119,6 +127,7 @@ db.tracks.explain("executionStats").find({
 
 Припустимо, що ви часто шукаєте музику для роботи, використовуючи поля audio_features.instrumentalness, audio_features.speechiness та explicit. Щоб такі запити виконувалися ефективно, створіть складений індекс за цими полями та за допомогою explain() покажіть, що він використовується при виконанні пошуку.
 
+![image alt](https://github.com/ovavova/Yereschenko_nosql_1/blob/main/screenshots/MongoDB_4_2.png)
 
 ### 4.3 Покривний запит
 
@@ -133,5 +142,21 @@ db.tracks.find({
 
 
 
-Питання: Чи є цей запит покривним (covered query)? Надайте розгорнуту та обґрунтовану відповідь у файлі README.
+Питання: Чи є цей запит покривним (covered query)? 
 
+### Відповідь: ні, цей запит не є покривним так як треба виключити _id . 
+![image alt](https://github.com/ovavova/Yereschenko_nosql_1/blob/main/screenshots/MongoDB_4_3.png)
+
+покривний запит буде:
+
+```js
+db.tracks.find({
+  track_genre: "pop",
+  popularity: { $gte: 70 }
+},
+  {
+    track_genre: 1, 
+    popularity: 1,  
+    _id: 0          
+  })
+```
