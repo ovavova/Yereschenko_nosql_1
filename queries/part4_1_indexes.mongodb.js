@@ -1,9 +1,13 @@
 //explain спочатку
 
-db.tracks.explain("executionStats").find({
+// use('spotify');
+
+db.tracks.find({
   track_genre: "pop",
   "audio_features.danceability": { $gte: 0.7 }
-}).sort({ popularity: -1 }).toArray();
+})
+.sort({ popularity: -1 })
+.explain("executionStats"); // для VSCode playground 
 
 //робимо індекси ESR
 
@@ -15,7 +19,4 @@ db.tracks.explain("executionStats").find({
 
 //
 
-// db.tracks.explain("executionStats").find({
-//   track_genre: "pop",
-//   "audio_features.danceability": { $gte: 0.7 }
-// }).sort({ popularity: -1 }).toArray();
+// db.tracks.dropIndexes();
