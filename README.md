@@ -100,7 +100,7 @@ db.tracks.explain("executionStats").find({
   "audio_features.danceability": { $gte: 0.7 }
 }).sort({ popularity: -1 }).toArray();
 ```
-![image alt](https://github.com/ovavova/Yereschenko_nosql_1/blob/main/screenshots/MongoDB_4_1.png)
+![image alt](https://github.com/ovavova/Yereschenko_nosql_1/blob/main/screenshots/MongoDB4_1.png)
 
 
 ```js
@@ -113,7 +113,7 @@ db.tracks.createIndex({
   "audio_features.danceability": 1
 });
 ```
-![image alt](https://github.com/ovavova/Yereschenko_nosql_1/blob/main/screenshots/MongoDB_4_1_2.png)
+![image alt](https://github.com/ovavova/Yereschenko_nosql_1/blob/main/screenshots/MongoDB4_1_2.png)
 
 
 ```js
@@ -127,7 +127,7 @@ db.tracks.explain("executionStats").find({
 
 Припустимо, що ви часто шукаєте музику для роботи, використовуючи поля audio_features.instrumentalness, audio_features.speechiness та explicit. Щоб такі запити виконувалися ефективно, створіть складений індекс за цими полями та за допомогою explain() покажіть, що він використовується при виконанні пошуку.
 
-![image alt](https://github.com/ovavova/Yereschenko_nosql_1/blob/main/screenshots/MongoDB_4_2.png)
+![image alt](https://github.com/ovavova/Yereschenko_nosql_1/blob/main/screenshots/MongoDB4_2.png)
 
 ### 4.3 Покривний запит
 
@@ -145,7 +145,7 @@ db.tracks.find({
 Питання: Чи є цей запит покривним (covered query)? 
 
 ### Відповідь: ні, цей запит не є покривним так як треба виключити _id . 
-![image alt](https://github.com/ovavova/Yereschenko_nosql_1/blob/main/screenshots/MongoDB_4_3.png)
+![image alt](https://github.com/ovavova/Yereschenko_nosql_1/blob/main/screenshots/MongoDB4_3.png)
 
 покривний запит буде:
 
