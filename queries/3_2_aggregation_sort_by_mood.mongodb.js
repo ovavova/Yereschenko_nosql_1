@@ -10,7 +10,7 @@
 use('spotify');
 
 const moodDistribution = db.tracks.aggregate([
-  // Визначаємо настрій для кожного треку на основі valence та energy
+  // Визначаємо настрій для кожного треку на основі valence та energy - switch
   {
     $project: {
       mood: {
