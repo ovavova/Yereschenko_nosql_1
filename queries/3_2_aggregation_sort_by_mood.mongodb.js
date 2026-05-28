@@ -37,7 +37,7 @@ const moodDistribution = db.tracks.aggregate([
               then: "sad"
             }
           ],
-          default: "unknown" // На випадок, якщо десь відсутні поля
+          default: "unknown" // якщо відсутні поля
         }
       }
     }
