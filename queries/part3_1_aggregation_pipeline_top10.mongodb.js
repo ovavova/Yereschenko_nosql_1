@@ -14,7 +14,7 @@ const topArtists = db.tracks.aggregate([
   },
   {
     $match: {
-      totalTracks: { $gte: 5 }
+      totalTracks: { $gte: 50 }
     }
   },
   {

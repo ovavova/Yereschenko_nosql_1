@@ -27,7 +27,7 @@ const danceableGenres = db.tracks.aggregate([
   // Фільтруємо жанри, де менше 100 треків, щоб забезпечити статистичну надійність.
   {
     $match: {
-      totalTracks: { $gte: 100 }
+      totalTracks: { $gte: 50 }
     }
   },
 
